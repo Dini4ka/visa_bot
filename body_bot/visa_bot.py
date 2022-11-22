@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 from captcha_pass.captcha_bypass import capcha_bypass
 
 
-class VisaBot():
+class VisaBot:
     def __init__(self,proxy, data):
         # for linux server
         # self.display = Display(visible=0, size=(800, 600))
