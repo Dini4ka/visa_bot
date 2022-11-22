@@ -13,6 +13,7 @@ if __name__ == '__main__':
         counter = 0
         a.get_book_link()
         a.auth()
+        a.put_data(person)
         a.logout()
         if (data.index(person) + 1) % 2 == 0:
             counter +=1

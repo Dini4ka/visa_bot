@@ -1,6 +1,7 @@
 import time
 import undetected_chromedriver.v2 as uc
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import Select
 from captcha_pass.captcha_bypass import capcha_bypass
 from get_data import proxy
 
@@ -37,8 +38,7 @@ class VisaBot:
         while self.driver.title == 'Just a moment...':
             time.sleep(5)
             self.driver.get(book_now)
-            time.sleep(15)
-        time.sleep(30)
+            time.sleep(5)
 
     def auth(self):
         print(self.driver.title)
@@ -52,6 +52,7 @@ class VisaBot:
             capcha_bypass(self.driver, self.auth_link, self.proxy)
             while self.driver.title == 'Just a moment...':
                 self.driver.refresh()
+                time.sleep(5)
         except:
             self.driver.refresh()
             time.sleep(10)
@@ -64,10 +65,12 @@ class VisaBot:
             capcha_bypass(self.driver, self.auth_link, self.proxy)
             while self.driver.title == 'Just a moment...':
                 self.driver.refresh()
+                time.sleep(5)
         self.driver.find_element(By.ID, 'btnSubmit').click()
         time.sleep(15)
         while self.driver.title == 'Just a moment...':
             self.driver.refresh()
+            time.sleep(5)
         while str(self.driver.title) == 'VFS : Registered Login':
             login = self.driver.find_element(By.NAME, 'EmailId')
             login.send_keys(mail)
@@ -77,6 +80,7 @@ class VisaBot:
                 capcha_bypass(self.driver, self.auth_link, self.proxy)
                 while self.driver.title == 'Just a moment...':
                     self.driver.refresh()
+                    time.sleep(5)
             except:
                 self.driver.refresh()
                 time.sleep(10)
@@ -90,12 +94,31 @@ class VisaBot:
                 sleep(5)
                 while self.driver.title == 'Just a moment...':
                     self.driver.refresh()
+                    time.sleep(5)
             self.driver.find_element(By.ID, 'btnSubmit').click()
             time.sleep(10)
             while self.driver.title == 'Just a moment...':
                 self.driver.refresh()
 
-
+    def put_data(self,personal_documents):
+        registration_for_submition = self.driver.find_elements(By.CLASS_NAME,'inactive-link')[0].find_element(By.TAG_NAME,'a').get_attribute('href')
+        print(registration_for_submition)
+        self.driver.get(registration_for_submition)
+        time.sleep(5)
+        while self.driver.title == 'Just a moment...':
+            self.driver.refresh()
+            time.sleep(5)
+        while self.driver.title == 'VFS : Registered Login':
+            auth()
+        select_city = Select(self.driver.find_element(By.ID,'LocationId'))
+        select_city.select_by_value('635')
+        select_visa = Select(self.driver.find_element(By.ID,'VisaCategoryId'))
+        select_visa.select_by_value('1101')
+        self.driver.find_element(By.ID,'btnContinue').click()
+        time.sleep(5)
+        while self.driver.title == 'Just a moment...':
+            self.driver.refresh()
+            time.sleep(5)
 
     def logout(self):
         time.sleep(10)
