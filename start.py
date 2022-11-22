@@ -11,8 +11,11 @@ print(mails[1])
 
 if __name__ == '__main__':
     a = VisaBot()
-    a.get_book_link()
-    a.auth()
-    a.logout()
-    a.quite()
-
+    try:
+        a.get_book_link()
+        a.auth()
+        a.logout()
+    except Exception as exc:
+        print(exc)
+    finally:
+        a.quite()
