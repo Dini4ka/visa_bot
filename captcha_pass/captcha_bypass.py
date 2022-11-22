@@ -21,7 +21,7 @@ def capcha_bypass(driver, website, proxy):
     captcha = str(requests.post(reqst, data={f'proxy': {proxy}, 'proxytype': 'HHTPS'}).content)
     print(captcha)
     captcha_id = captcha.split('|')[1][:-1]
-    time.sleep(25)
+    time.sleep(15)
 
     # Getting answer for our request
     res = 'http://rucaptcha.com/res.php?key=' + API + '&action=get&id=' + captcha_id
