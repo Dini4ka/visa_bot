@@ -120,6 +120,7 @@ class VisaBot:
             self.driver.refresh()
             time.sleep(5)
 
+
     def logout(self):
         time.sleep(10)
         self.driver.execute_script('document.getElementById("logoutForm").submit()')
